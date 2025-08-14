@@ -6,16 +6,17 @@
 #include <array>
 
 bool Revolver::fire() {
-    bool result = chambers[currIndex];
+    bool hasBullet = (chambers >> currIndex) & 1;
+    if (hasBullet) chambers &= ~(1 << currIndex);
     currIndex = (currIndex + 1) % 6;
-    return result;
+    return hasBullet;
 }
 
 void Revolver::loadChambers(int n) {
-    std::fill(chambers, chambers + 6, false);
+    chambers = 0;
     std::array<int, 6> indices = { 0, 1, 2, 3, 4, 5 };
     std::shuffle(indices.begin(), indices.end(), RandomIntGenerator::getGenerator());
     for (int i = 0; i < n; ++i) {
-        chambers[indices[i]] = true;
+        chambers |= (1 << indices[i]);
     }
 }

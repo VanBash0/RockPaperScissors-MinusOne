@@ -6,7 +6,7 @@ public:
     bool fire();
     void loadChambers(int n);
 private:
-    bool chambers[6];
+    unsigned char chambers = 0;
     int currIndex;
 };
 

@@ -15,4 +15,4 @@ public:
     static GameResult getGameResult(Figure a, Figure b);
 };
 
-#endif GAME_RESULT_CALCULATOR
+#endif // GAME_RESULT_CALCULATOR
