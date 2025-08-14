@@ -4,9 +4,8 @@
 #include <random>
 
 class RandomIntGenerator {
-private:
-    static std::mt19937& getGenerator();
 public:
+    static std::mt19937& getGenerator();
     static int Next(int min, int max);
 };
 
