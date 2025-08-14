@@ -1,21 +1,19 @@
 #include "Revolver.hpp"
-
-#include "RandomIntGenerator.hpp"
-
 #include <algorithm>
 #include <array>
+#include "RandomIntGenerator.hpp"
 
-bool Revolver::fire() {
+bool Revolver::Fire() {
     bool hasBullet = (chambers >> currIndex) & 1;
     if (hasBullet) chambers &= ~(1 << currIndex);
     currIndex = (currIndex + 1) % 6;
     return hasBullet;
 }
 
-void Revolver::loadChambers(int n) {
+void Revolver::LoadChambers(int n) {
     chambers = 0;
     std::array<int, 6> indices = { 0, 1, 2, 3, 4, 5 };
-    std::shuffle(indices.begin(), indices.end(), RandomIntGenerator::getGenerator());
+    std::shuffle(indices.begin(), indices.end(), RandomIntGenerator::GetGenerator());
     for (int i = 0; i < n; ++i) {
         chambers |= (1 << indices[i]);
     }

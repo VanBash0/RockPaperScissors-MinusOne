@@ -3,8 +3,8 @@
 
 class Revolver {
 public:
-    bool fire();
-    void loadChambers(int n);
+    bool Fire();
+    void LoadChambers(int n);
 private:
     unsigned char chambers = 0;
     int currIndex;

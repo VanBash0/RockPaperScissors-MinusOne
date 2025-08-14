@@ -1,9 +1,9 @@
 #include "HumanPlayer.hpp"
 
-void HumanPlayer::setFigure(Figure figure, int index) {
+void HumanPlayer::SetFigure(Figure figure, int index) {
     figures[index] = figure;
 }
 
-void HumanPlayer::dropFigure(int index) {
+void HumanPlayer::DropFigure(int index) {
     figures[index] = Figure::EMPTY;
 }

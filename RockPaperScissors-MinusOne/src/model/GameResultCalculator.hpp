@@ -12,7 +12,7 @@ enum class GameResult {
 
 class GameResultCalculator {
 public:
-    static GameResult getGameResult(Figure a, Figure b);
+    static GameResult GetGameResult(Figure a, Figure b);
 };
 
 #endif // GAME_RESULT_CALCULATOR

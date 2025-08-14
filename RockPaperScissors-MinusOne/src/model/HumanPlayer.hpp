@@ -5,8 +5,8 @@
 
 class HumanPlayer : public Player {
 public:
-    void setFigure(Figure figure, int index);
-    void dropFigure(int index);
+    void SetFigure(Figure figure, int index);
+    void DropFigure(int index);
 };
 
 #endif // HUMAN_PLAYER

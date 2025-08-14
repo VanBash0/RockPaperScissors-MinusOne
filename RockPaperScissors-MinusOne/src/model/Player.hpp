@@ -6,8 +6,8 @@
 class Player {
 public:
     Player();
-    void resetFigures();
-    Figure getFinalFigure() const;
+    void ResetFigures();
+    Figure GetFinalFigure() const;
 protected:
     Figure figures[2];
 };

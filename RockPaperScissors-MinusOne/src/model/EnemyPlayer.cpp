@@ -1,13 +1,12 @@
 #include "EnemyPlayer.hpp"
+#include <random>
 #include "RandomIntGenerator.hpp"
 
-#include <random>
-
-void EnemyPlayer::setFigures() {
+void EnemyPlayer::SetFigures() {
     figures[0] = static_cast<Figure>(RandomIntGenerator::Next(1, 3));
     figures[1] = static_cast<Figure>(RandomIntGenerator::Next(1, 3));
 }
 
-void EnemyPlayer::dropFigure() {
+void EnemyPlayer::DropFigure() {
     figures[RandomIntGenerator::Next(0, 1)] = Figure::EMPTY;
 }

@@ -5,7 +5,7 @@
 
 class RandomIntGenerator {
 public:
-    static std::mt19937& getGenerator();
+    static std::mt19937& GetGenerator();
     static int Next(int min, int max);
 };
 

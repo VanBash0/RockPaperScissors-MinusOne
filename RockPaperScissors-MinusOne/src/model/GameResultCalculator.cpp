@@ -1,6 +1,6 @@
 #include "GameResultCalculator.hpp"
 
-GameResult GameResultCalculator::getGameResult(Figure a, Figure b) {
+GameResult GameResultCalculator::GetGameResult(Figure a, Figure b) {
     if (a == Figure::EMPTY || b == Figure::EMPTY) {
         return GameResult::INVALID;
     }
