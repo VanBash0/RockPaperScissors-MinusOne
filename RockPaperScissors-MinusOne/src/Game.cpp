@@ -13,7 +13,7 @@ int main() {
     MainMenuModel mainMenuModel;
     MenuView mainMenuView;
     MenuController mainMenuController;
-    int selected = -1;
+    int selected = Constants::NOT_SELECTED;
 
     while (!WindowShouldClose()) {
         BeginDrawing();

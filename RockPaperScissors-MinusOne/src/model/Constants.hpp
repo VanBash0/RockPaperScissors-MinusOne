@@ -9,6 +9,7 @@ namespace Constants {
     inline constexpr int SPACING = 20;
     inline constexpr int FONT_SIZE = 20;
     inline const char *APP_NAME = "Rock, Paper, Scissors, Minus One";
+    inline constexpr int NOT_SELECTED = -1;
 }
 
 #endif // CONSTANTS

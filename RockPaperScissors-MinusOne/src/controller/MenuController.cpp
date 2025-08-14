@@ -3,7 +3,7 @@
 #include "Constants.hpp"
 
 std::pair<GameState, int> MenuController::HandleMouse(const std::vector<MenuItem>& menuItems, const MenuView& menuView) const {
-    int selected = -1;
+    int selected = Constants::NOT_SELECTED;
     Vector2 mousePos = GetMousePosition();
     int numberOfItems = menuItems.size();
     int totalHeight = menuItems.size() * (Constants::BUTTON_HEIGHT + Constants::SPACING) - Constants::SPACING;
