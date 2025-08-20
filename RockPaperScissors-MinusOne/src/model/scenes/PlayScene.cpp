@@ -3,9 +3,33 @@
 
 SceneAction PlayScene::Update() {
     SceneAction action { GameState::PLAY, false };
-    if (IsKeyPressed(KEY_E)) {
-        action.isSceneChanged = true;
-        action.targetState = GameState::MAIN_MENU;
+    switch (state) {
+    case PlaySceneStates::CHOOSING_FIGURES:
+        auto pressedKey = GetKeyPressed();
+        if (controller.TryHandleChoosingFigures(model, pressedKey))
+            state = PlaySceneStates::ENEMY_CHOOSING_FIGURES;
+        return action;
+    case PlaySceneStates::ENEMY_CHOOSING_FIGURES:
+        model.enemy.SetFigures();
+        state = PlaySceneStates::DROPPING_FIGURE;
+        return action;
+    case PlaySceneStates::DROPPING_FIGURE:
+        auto pressedKey = GetKeyPressed();
+        if (controller.TryHandleDroppingFigure(model, pressedKey))
+            state = PlaySceneStates::ENEMY_DROPPING_FIGURE;
+        return action;
+    case PlaySceneStates::ENEMY_DROPPING_FIGURE:
+        model.enemy.DropFigure();
+        state = PlaySceneStates::CALCULATING_RESULT;
+        return action;
+    case PlaySceneStates::CALCULATING_RESULT:
+        auto gameResult = controller.GetGameResult(model);
+        switch (gameResult) {
+        case GameResult::DRAW:
+            state = PlaySceneStates::CHOOSING_FIGURES;
+            break;
+        case GameR
+        }
     }
     return action;
 }

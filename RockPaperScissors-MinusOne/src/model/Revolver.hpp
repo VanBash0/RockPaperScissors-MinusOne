@@ -7,7 +7,7 @@ public:
     void LoadChambers(int n);
 private:
     unsigned char chambers = 0;
-    int currIndex;
+    int currIndex = 0;
 };
 
 #endif // REVOLVER

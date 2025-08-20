@@ -23,9 +23,9 @@ int main() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
+        sceneManager.Render();
         sceneManager.Update();
         if (sceneManager.ShouldExit()) return 0;
-        sceneManager.Render();
 
         EndDrawing();
     }
