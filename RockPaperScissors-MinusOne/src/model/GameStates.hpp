@@ -1,5 +1,5 @@
-#ifndef GAME_STATE
-#define GAME_STATE
+#ifndef GAME_STATES
+#define GAME_STATES
 
 enum class GameState {
     MAIN_MENU,
@@ -9,4 +9,4 @@ enum class GameState {
     EXIT
 };
 
-#endif GAME_STATE
+#endif // GAME_STATES

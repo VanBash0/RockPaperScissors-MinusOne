@@ -12,6 +12,7 @@ bool Revolver::Fire() {
 
 void Revolver::LoadChambers(int n) {
     chambers = 0;
+    currIndex = 0;
     std::array<int, 6> indices = { 0, 1, 2, 3, 4, 5 };
     std::shuffle(indices.begin(), indices.end(), RandomIntGenerator::GetGenerator());
     for (int i = 0; i < n; ++i) {

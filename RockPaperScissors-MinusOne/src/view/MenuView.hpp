@@ -9,4 +9,4 @@ public:
     void Render(const std::vector<MenuItem>& menuItems, int selected) const;
 };
 
-#endif
+#endif // MENU_VIEW

@@ -5,9 +5,14 @@
 #include "MenuModel.hpp"
 #include "MenuView.hpp"
 
-class MenuController {
-public:
-    std::pair<GameState, int> HandleMouse(const std::vector<MenuItem>& menuItems, const MenuView& menuView) const;
+struct MenuAction {
+    GameState targetState;
+    int selectedIndex;
 };
 
-#endif
+class MenuController {
+public:
+    MenuAction HandleInput(const std::vector<MenuItem>& menuItems, const MenuView& menuView) const;
+};
+
+#endif // MENU_CONTROLLER

@@ -1,3 +1,7 @@
+
+#ifndef MAIN_MENU_MODEL
+#define MAIN_MENU_MODEL
+
 #include "MenuModel.hpp"
 
 class MainMenuModel : public MenuModel {
@@ -11,3 +15,5 @@ public:
         };
     }
 };
+
+#endif // MAIN_MENU_MODEL

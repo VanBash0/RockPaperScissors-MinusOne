@@ -1,5 +1,5 @@
-#ifndef MAIN_MENU_MODEL
-#define MAIN_MENU_MODEL
+#ifndef MENU_MODEL
+#define MENU_MODEL
 
 #include <vector>
 #include "GameStates.hpp"
@@ -14,4 +14,4 @@ public:
     virtual std::vector<MenuItem> GetMenuItems() const = 0;
 };
 
-#endif
+#endif // MENU_MODEL

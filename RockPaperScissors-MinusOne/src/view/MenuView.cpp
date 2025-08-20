@@ -3,7 +3,7 @@
 #include "Constants.hpp"
 
 void MenuView::Render(const std::vector<MenuItem>& menuItems, int selected) const {
-    int numberOfItems = menuItems.size();
+    size_t numberOfItems = menuItems.size();
     int totalHeight = numberOfItems * (Constants::BUTTON_HEIGHT + Constants::SPACING) - Constants::SPACING;
     int startY = (Constants::SCREEN_HEIGHT - totalHeight) / 2;
 
