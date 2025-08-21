@@ -56,6 +56,14 @@ void PlayView::Render(const std::vector<Figure>& playerFigures, const std::vecto
         }
         DrawTexture(texture, Constants::SCREEN_WIDTH - 200, (Constants::SCREEN_HEIGHT / 3) * (i + 1) - 100, WHITE);
     }
+    auto labelInConstChar = label.c_str();
+    DrawText(
+        labelInConstChar,
+        (Constants::SCREEN_WIDTH - MeasureText(labelInConstChar, Constants::FONT_SIZE)) / 2,
+        (Constants::SCREEN_HEIGHT - Constants::FONT_SIZE) / 2,
+        Constants::FONT_SIZE,
+        BLACK
+    );
 }
 
 PlayView::PlayView() {
@@ -64,4 +72,8 @@ PlayView::PlayView() {
 
 PlayView::~PlayView() {
     UnloadAssets();
+}
+
+void PlayView::SetText(std::string text) {
+    label = text;
 }

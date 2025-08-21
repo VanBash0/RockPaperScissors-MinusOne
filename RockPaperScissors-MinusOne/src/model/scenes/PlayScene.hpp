@@ -13,7 +13,11 @@ enum class PlaySceneState {
     DROPPING_FIGURE,
     ENEMY_DROPPING_FIGURE,
     CALCULATING_RESULT,
+    WAITING_AFTER_DRAW,
     SHOOTING,
+    WAITING_AFTER_SHOOT_DRAW,
+    WAITING_AFTER_WIN,
+    WAITING_AFTER_LOSE,
     WIN,
     LOSE,
     LABEL
@@ -28,6 +32,8 @@ private:
     PlayModel model;
     PlayController controller;
     PlaySceneState state = PlaySceneState::LOADING_REVOLVER;
+    float waitTimer = 0;
+    bool isWaiting = false;
 };
 
 #endif // PLAY_SCENE
