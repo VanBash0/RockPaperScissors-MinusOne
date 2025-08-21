@@ -11,6 +11,7 @@ struct PlayModel {
     EnemyPlayer enemy;
     Revolver revolver;
     GameResultCalculator calculator;
+    bool playerWinsInRound;
 };
 
 #endif // PLAY_MODEL

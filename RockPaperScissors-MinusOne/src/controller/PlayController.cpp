@@ -2,7 +2,7 @@
 #include "raylib.h"
 
 bool PlayController::TryHandleChoosingFigures(PlayModel& model, int pressedKey) {
-    if (!(pressedKey == KEY_ONE) && !(pressedKey == KEY_TWO) && (pressedKey == KEY_THREE)) return false;
+    if (!(pressedKey == KEY_ONE) && !(pressedKey == KEY_TWO) && !(pressedKey == KEY_THREE)) return false;
     auto handToPick = model.player.HandToPick();
     model.player.SetFigure(keyToFigure.at(pressedKey), handToPick);
     return true;
@@ -21,13 +21,30 @@ bool PlayController::TryHandleDroppingFigure(PlayModel& model, int pressedKey) {
     }
 }
 
-GameResult PlayController::GetGameResult(PlayModel& model) {
+bool PlayController::IsGameEnded(PlayModel& model) {
     auto playerChoice = model.player.GetFinalFigure();
     auto enemyChoice = model.enemy.GetFinalFigure();
-    return model.calculator.GetGameResult(playerChoice, enemyChoice);
+    auto gameResult = model.calculator.GetGameResult(playerChoice, enemyChoice);
+    if (gameResult == GameResult::DRAW) return false;
+    model.playerWinsInRound = (gameResult == GameResult::WIN);
+    return true;
 }
 
 void PlayController::ResetFigures(PlayModel& model) {
     model.player.ResetFigures();
     model.enemy.ResetFigures();
+}
+
+GameResult PlayController::TryShooting(PlayModel& model) {
+    bool isShotDone = model.revolver.Fire();
+    if (!isShotDone) return GameResult::DRAW;
+    return (model.playerWinsInRound) ? GameResult::WIN : GameResult::LOSE;
+}
+
+bool PlayController::TryExitGame() {
+    return (IsKeyPressed(KEY_E));
+}
+
+void PlayController::LoadRevolver(PlayModel& model, int bullets) {
+    model.revolver.LoadChambers(bullets);
 }

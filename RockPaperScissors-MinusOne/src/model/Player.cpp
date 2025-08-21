@@ -20,3 +20,10 @@ Hand Player::HandToPick() const {
     if (figures[Hand::RIGHT] == Figure::EMPTY) return RIGHT;
     return NEITHER;
 }
+
+std::vector<Figure> Player::GetFigures() const {
+    std::vector<Figure> result;
+    result.push_back(figures[Hand::LEFT]);
+    result.push_back(figures[Hand::RIGHT]);
+    return result;
+}

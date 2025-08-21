@@ -2,10 +2,12 @@
 #define PLAYER
 
 #include "Figures.hpp"
+#include <vector>
 
 enum Hand {
     LEFT,
-    RIGHT
+    RIGHT,
+    NEITHER
 };
 
 class Player {
@@ -14,6 +16,7 @@ public:
     void ResetFigures();
     Figure GetFinalFigure() const;
     Hand HandToPick() const;
+    std::vector<Figure> GetFigures() const;
 protected:
     Figure figures[2];
 };
