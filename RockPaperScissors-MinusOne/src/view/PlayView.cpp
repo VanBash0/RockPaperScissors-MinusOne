@@ -39,20 +39,20 @@ void PlayView::UnloadAssets() {
 void PlayView::Render(const std::vector<Figure>& playerFigures, const std::vector<Figure>& enemyFigures) {
     Texture2D texture;
     for (size_t i = 0; i < playerFigures.size(); ++i) {
-        if (playerFigures[i] == Figure::Empty) continue;
+        if (playerFigures[i] == Figure::EMPTY) continue;
         switch (playerFigures[i]) {
-        case Figure::Rock: texture = rockTexturePlayer; break;
-        case Figure::Paper: texture = paperTexturePlayer; break;
-        case Figure::Scissors: texture = scissorsTexturePlayer; break;
+        case Figure::ROCK: texture = rockTexturePlayer; break;
+        case Figure::PAPER: texture = paperTexturePlayer; break;
+        case Figure::SCISSORS: texture = scissorsTexturePlayer; break;
         }
         DrawTexture(texture, 0, (Constants::SCREEN_HEIGHT / 3) * (i + 1) - 100, WHITE);
     }
     for (size_t i = 0; i < enemyFigures.size(); ++i) {
-        if (enemyFigures[i] == Figure::Empty) continue;
+        if (enemyFigures[i] == Figure::EMPTY) continue;
         switch (enemyFigures[i]) {
-        case Figure::Rock: texture = rockTextureEnemy; break;
-        case Figure::Paper: texture = paperTextureEnemy; break;
-        case Figure::Scissors: texture = scissorsTextureEnemy; break;
+        case Figure::ROCK: texture = rockTextureEnemy; break;
+        case Figure::PAPER: texture = paperTextureEnemy; break;
+        case Figure::SCISSORS: texture = scissorsTextureEnemy; break;
         }
         DrawTexture(texture, Constants::SCREEN_WIDTH - 200, (Constants::SCREEN_HEIGHT / 3) * (i + 1) - 100, WHITE);
     }

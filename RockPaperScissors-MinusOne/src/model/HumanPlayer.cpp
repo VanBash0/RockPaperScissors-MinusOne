@@ -5,5 +5,5 @@ void HumanPlayer::SetFigure(Figure figure, int index) {
 }
 
 void HumanPlayer::DropFigure(int index) {
-    figures[index] = Figure::Empty;
+    figures[index] = Figure::EMPTY;
 }

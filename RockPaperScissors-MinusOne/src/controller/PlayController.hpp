@@ -14,6 +14,7 @@ public:
     GameResult TryShooting(PlayModel& model);
     bool TryExitGame();
     void LoadRevolver(PlayModel& model, int bullets);
+    void SetEnemyStrategy(PlayModel& model);
 private:
     std::unordered_map<int, Figure> keyToFigure = {
         {KEY_ONE, Figure::ROCK},

@@ -38,7 +38,7 @@ SceneAction PlayScene::Update() {
             state = PlaySceneState::ENEMY_DROPPING_FIGURE;
     } break;
     case PlaySceneState::ENEMY_DROPPING_FIGURE:
-        model.enemy.DropFigure();
+        model.enemy.DropFigure(model.player.GetFigures());
         state = PlaySceneState::CALCULATING_RESULT;
         break;
     case PlaySceneState::CALCULATING_RESULT:

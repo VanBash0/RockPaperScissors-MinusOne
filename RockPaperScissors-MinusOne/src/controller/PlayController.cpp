@@ -1,5 +1,7 @@
 #include "PlayController.hpp"
 #include "raylib.h"
+#include "Config.hpp"
+#include "Constants.hpp"
 
 bool PlayController::TryHandleChoosingFigures(PlayModel& model, int pressedKey) {
     if (!(pressedKey == KEY_ONE) && !(pressedKey == KEY_TWO) && !(pressedKey == KEY_THREE)) return false;
@@ -47,4 +49,10 @@ bool PlayController::TryExitGame() {
 
 void PlayController::LoadRevolver(PlayModel& model, int bullets) {
     model.revolver.LoadChambers(bullets);
+}
+
+void PlayController::SetEnemyStrategy(PlayModel& model) {
+    Config& config = Config::GetInstance();
+    int strategy = config.Get<int>(Constants::ENEMY_STRATEGY);
+    model.enemy.SetStrategy(static_cast<EnemyStrategy>(strategy));
 }

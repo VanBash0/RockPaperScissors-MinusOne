@@ -2,10 +2,10 @@
 #define FIGURES
 
 enum class Figure {
-    Empty,
-    Rock,
-    Paper,
-    Scissors
+    EMPTY,
+    ROCK,
+    PAPER,
+    SCISSORS
 };
 
 #endif // FIGURES

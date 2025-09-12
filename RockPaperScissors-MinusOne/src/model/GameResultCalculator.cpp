@@ -1,7 +1,7 @@
 #include "GameResultCalculator.hpp"
 
 GameResult GameResultCalculator::GetGameResult(Figure a, Figure b) {
-    if (a == Figure::Empty || b == Figure::Empty) {
+    if (a == Figure::EMPTY || b == Figure::EMPTY) {
         return GameResult::INVALID;
     }
 
@@ -9,9 +9,9 @@ GameResult GameResultCalculator::GetGameResult(Figure a, Figure b) {
         return GameResult::DRAW;
     }
 
-    if ((a == Figure::Rock && b == Figure::Scissors) ||
-        (a == Figure::Scissors && b == Figure::Paper) ||
-        (a == Figure::Paper && b == Figure::Rock)) {
+    if ((a == Figure::ROCK && b == Figure::SCISSORS) ||
+        (a == Figure::SCISSORS && b == Figure::PAPER) ||
+        (a == Figure::PAPER && b == Figure::ROCK)) {
             return GameResult::WIN;
         }
 
