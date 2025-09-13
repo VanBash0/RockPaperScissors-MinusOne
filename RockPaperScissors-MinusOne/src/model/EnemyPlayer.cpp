@@ -30,8 +30,8 @@ void EnemyPlayer::DropFigure(std::vector<Figure> playerFigures) {
             int prediction = 0;
             for (auto playerFigure : playerFigures) {
                 GameResult gameResult = GameResultCalculator::GetGameResult(enemyFigure, playerFigure);
-                if (strategy == EnemyStrategy::CAREFUL) prediction += (gameResult == GameResult::LOSE) ? 0 : 2;
-                else prediction += (gameResult == GameResult::DRAW) ? 1 : (gameResult == GameResult::WIN) ? 2 : 0;
+                if (strategy == EnemyStrategy::CAREFUL) prediction += (gameResult == GameResult::LOSE) ? 0 : 1;
+                else prediction += (gameResult == GameResult::LOSE) ? 0 : (gameResult == GameResult::WIN) ? 3 : 1;
             }
             predictions.push_back(prediction);
         }
@@ -41,6 +41,6 @@ void EnemyPlayer::DropFigure(std::vector<Figure> playerFigures) {
     }
 }
 
-void EnemyPlayer::SetStrategy(EnemyStrategy strategy) {
-    this->strategy = strategy;
+void EnemyPlayer::SetStrategy(int strategy) {
+    this->strategy = static_cast<EnemyStrategy>(strategy);
 }

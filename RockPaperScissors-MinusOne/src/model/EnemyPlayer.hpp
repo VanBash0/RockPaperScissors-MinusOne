@@ -4,16 +4,16 @@
 #include "Player.hpp"
 
 enum class EnemyStrategy {
+    RANDOM,
     CAREFUL,
-    AGGRESSIVE,
-    RANDOM
+    AGGRESSIVE
 };
 
 class EnemyPlayer : public Player {
 public:
     void SetFigures();
     void DropFigure(std::vector<Figure> playerFigures);
-    void SetStrategy(EnemyStrategy strategy);
+    void SetStrategy(int strategy);
 private:
     EnemyStrategy strategy;
 };

@@ -14,7 +14,8 @@ SceneAction PlayScene::Update() {
 
     switch (state) {
     case PlaySceneState::LOADING_REVOLVER:
-        controller.LoadRevolver(model, 6);
+        controller.SetEnemyStrategy(model);
+        controller.LoadRevolver(model);
         state = PlaySceneState::CHOOSING_FIGURES;
         controller.ResetFigures(model);
         break;
@@ -34,13 +35,12 @@ SceneAction PlayScene::Update() {
     case PlaySceneState::DROPPING_FIGURE: {
         view.SetText("Pick one figure to leave");
         auto pressedKey = GetKeyPressed();
-        if (controller.TryHandleDroppingFigure(model, pressedKey))
-            state = PlaySceneState::ENEMY_DROPPING_FIGURE;
+        auto playerFigures = model.player.GetFigures();
+        if (controller.TryHandleDroppingFigure(model, pressedKey)) {
+            model.enemy.DropFigure(playerFigures);
+            state = PlaySceneState::CALCULATING_RESULT;
+        }
     } break;
-    case PlaySceneState::ENEMY_DROPPING_FIGURE:
-        model.enemy.DropFigure(model.player.GetFigures());
-        state = PlaySceneState::CALCULATING_RESULT;
-        break;
     case PlaySceneState::CALCULATING_RESULT:
         if (controller.IsGameEnded(model)) {
             state = PlaySceneState::SHOOTING;

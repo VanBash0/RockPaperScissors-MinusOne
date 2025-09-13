@@ -6,13 +6,13 @@ Config::Config() {
 }
 
 void Config::SaveToFile() {
-    std::ofstream file("save.json");
-    file << std::setw(4) << data << std::endl;
-    file.close();
+    std::ofstream output_file("assets/save.json");
+    output_file << std::setw(4) << data;
+    output_file.close();
 }
 
 void Config::LoadFromFile() {
-    std::ifstream file("save.json");
-    file >> data;
-    file.close();
+    std::ifstream input_file("assets/save.json");
+    data = nlohmann::json::parse(input_file);
+    input_file.close();
 }

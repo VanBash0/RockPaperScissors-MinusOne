@@ -13,7 +13,7 @@ public:
     void ResetFigures(PlayModel& model);
     GameResult TryShooting(PlayModel& model);
     bool TryExitGame();
-    void LoadRevolver(PlayModel& model, int bullets);
+    void LoadRevolver(PlayModel& model);
     void SetEnemyStrategy(PlayModel& model);
 private:
     std::unordered_map<int, Figure> keyToFigure = {

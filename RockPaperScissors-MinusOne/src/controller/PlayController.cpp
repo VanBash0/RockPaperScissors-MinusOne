@@ -47,12 +47,14 @@ bool PlayController::TryExitGame() {
     return (IsKeyPressed(KEY_E));
 }
 
-void PlayController::LoadRevolver(PlayModel& model, int bullets) {
+void PlayController::LoadRevolver(PlayModel& model) {
+    Config& config = Config::GetInstance();
+    int bullets = config.Get<int>(Constants::BULLETS);
     model.revolver.LoadChambers(bullets);
 }
 
 void PlayController::SetEnemyStrategy(PlayModel& model) {
     Config& config = Config::GetInstance();
     int strategy = config.Get<int>(Constants::ENEMY_STRATEGY);
-    model.enemy.SetStrategy(static_cast<EnemyStrategy>(strategy));
+    model.enemy.SetStrategy(strategy);
 }

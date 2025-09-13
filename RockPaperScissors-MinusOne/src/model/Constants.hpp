@@ -12,7 +12,8 @@ namespace Constants {
     inline constexpr int FONT_SIZE = 20;
     inline const char *APP_NAME = "Rock, Paper, Scissors, Minus One";
     inline constexpr int NOT_SELECTED = -1;
-    const std::string& ENEMY_STRATEGY = "enemy_strategy";
+    inline const std::string& ENEMY_STRATEGY = "enemy_strategy";
+    inline const std::string& BULLETS = "bullets";
 }
 
 #endif // CONSTANTS
