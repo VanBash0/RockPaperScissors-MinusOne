@@ -2,6 +2,7 @@
 #include "raylib.h"
 
 SceneAction StatsScene::Update() {
+
     SceneAction action{ GameState::STATS, false };
     if (IsKeyPressed(KEY_E)) {
         action.isSceneChanged = true;

@@ -1,15 +1,38 @@
 #include "SettingsScene.hpp"
 #include "raylib.h"
+#include "Config.hpp"
 
 SceneAction SettingsScene::Update() {
-    SceneAction action{ GameState::SETTINGS, false };
-    if (IsKeyPressed(KEY_E)) {
-        action.isSceneChanged = true;
-        action.targetState = GameState::MAIN_MENU;
+    switch (state) {
+    case SettingsSceneState::LOADING:
+        model.LoadFromConfig();
+        state = SettingsSceneState::IDLE;
+        return { GameState::SETTINGS, false };
+    case SettingsSceneState::IDLE:
+        auto menuItems = model.GetMenuItems();
+        auto handleResult = controller.HandleInput(menuItems, view, GameState::SETTINGS);
+
+        SceneAction action;
+        action.targetState = handleResult.targetState;
+        selected = handleResult.selectedIndex;
+        bool isSceneChanged = (selected == Constants::NOT_SELECTED) ? false : true;
+        if (isSceneChanged) {
+            if (action.targetState == GameState::SETTINGS_CHANGED) {
+                if (selected == 0) model.ChangeStrategy();
+                if (selected == 1) model.ChangeBullets();
+            }
+            else {
+                model.SaveToConfig();
+                Config& config = Config::GetInstance();
+                config.SaveToFile();
+            }
+        }
+        action.isSceneChanged = action.targetState == GameState::MAIN_MENU;
+        return action;
     }
-    return action;
 }
 
 void SettingsScene::Render() {
-    DrawText("SETTINGS STATE", 10, 10, 20, BLACK);
+    auto menuItems = model.GetMenuItems();
+    view.Render(menuItems, selected);
 }

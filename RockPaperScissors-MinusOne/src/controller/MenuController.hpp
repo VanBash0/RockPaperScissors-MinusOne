@@ -12,7 +12,7 @@ struct MenuAction {
 
 class MenuController {
 public:
-    MenuAction HandleInput(const std::vector<MenuItem>& menuItems, const MenuView& menuView) const;
+    MenuAction HandleInput(const std::vector<MenuItem>& menuItems, const MenuView& menuView, GameState baseState) const;
 };
 
 #endif // MENU_CONTROLLER

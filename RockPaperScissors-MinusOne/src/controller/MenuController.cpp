@@ -2,7 +2,7 @@
 #include "raylib.h"
 #include "Constants.hpp"
 
-MenuAction MenuController::HandleInput(const std::vector<MenuItem>& menuItems, const MenuView& menuView) const {
+MenuAction MenuController::HandleInput(const std::vector<MenuItem>& menuItems, const MenuView& menuView, GameState baseState) const {
     int selected = Constants::NOT_SELECTED;
     Vector2 mousePos = GetMousePosition();
     size_t numberOfItems = menuItems.size();
@@ -28,7 +28,7 @@ MenuAction MenuController::HandleInput(const std::vector<MenuItem>& menuItems, c
             }
         }
     }
-    action.targetState = GameState::MAIN_MENU;
+    action.targetState = baseState;
     action.selectedIndex = selected;
     return action;
 }

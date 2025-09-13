@@ -3,7 +3,7 @@
 
 SceneAction MainMenuScene::Update() {
     auto menuItems = model.GetMenuItems();
-    auto handleResult = controller.HandleInput(menuItems, view);
+    auto handleResult = controller.HandleInput(menuItems, view, GameState::MAIN_MENU);
 
     SceneAction action;
     action.targetState = handleResult.targetState;

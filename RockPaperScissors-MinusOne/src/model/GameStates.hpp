@@ -6,7 +6,8 @@ enum class GameState {
     PLAY,
     SETTINGS,
     STATS,
-    EXIT
+    EXIT,
+    SETTINGS_CHANGED
 };
 
 #endif // GAME_STATES
