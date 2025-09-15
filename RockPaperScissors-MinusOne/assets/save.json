@@ -1,4 +1,4 @@
 {
-    "bullets": 2,
-    "enemy_strategy": 0
+    "bullets": 5,
+    "enemy_strategy": 1
 }

@@ -10,10 +10,12 @@ public:
     void SaveToConfig();
     int GetEnemyStrategy() { return enemyStrategy; };
     int GetBullets() { return bullets; };
-    void ChangeStrategy() { enemyStrategy = (enemyStrategy + 1) % 3; };
-    void ChangeBullets() { bullets = (bullets + 1) % 6; };
+    void ChangeStrategy();
+    void ChangeBullets();
     std::vector<MenuItem> GetMenuItems();
 private:
+    std::string enemyStrategyStr;
+    std::string bulletsStr;
     int enemyStrategy;
     int bullets;
     std::string GetStrategyName();

@@ -3,21 +3,28 @@
 #include "Constants.hpp"
 #include <iostream>
 
+void SettingsModel::ChangeStrategy() {
+    enemyStrategy = (enemyStrategy + 1) % 3;
+    enemyStrategyStr = "Enemy: " + GetStrategyName();
+}
+
+void SettingsModel::ChangeBullets() {
+    bullets = (bullets + 1) % 7;
+    bulletsStr = "Bullets: " + std::to_string(GetBullets());
+}
+
 void SettingsModel::LoadFromConfig() {
     Config& config = Config::GetInstance();
     enemyStrategy = config.Get<int>(Constants::ENEMY_STRATEGY);
     bullets = config.Get<int>(Constants::BULLETS);
+    enemyStrategyStr = "Enemy: " + GetStrategyName();
+    bulletsStr = "Bullets: " + std::to_string(GetBullets());
 }
 
 std::vector<MenuItem> SettingsModel::GetMenuItems() {
-    std::string enemyStrategyStr = "Enemy: " + GetStrategyName();
-    const char* enemyStrategy = enemyStrategyStr.c_str();
-    std::string bulletsStr = "Bullets: " + std::to_string(GetBullets());
-    const char* bullets = bulletsStr.c_str();
-    std::cout << enemyStrategyStr << " " << bulletsStr << "\n";
     return {
-            { enemyStrategy, GameState::SETTINGS_CHANGED },
-            { bullets, GameState::SETTINGS_CHANGED },
+            { enemyStrategyStr.c_str(), GameState::SETTINGS_CHANGED},
+            { bulletsStr.c_str(), GameState::SETTINGS_CHANGED},
             { "Main Menu", GameState::MAIN_MENU }
     };
 }
