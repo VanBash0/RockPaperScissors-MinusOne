@@ -7,6 +7,7 @@ bool Revolver::Fire() {
     bool hasBullet = (chambers >> currIndex) & 1;
     if (hasBullet) chambers &= ~(1 << currIndex);
     currIndex = (currIndex + 1) % 6;
+    if (ifSpins) LoadChambers(std::_Popcount(chambers));
     return hasBullet;
 }
 

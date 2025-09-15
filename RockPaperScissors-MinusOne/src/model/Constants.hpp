@@ -14,6 +14,7 @@ namespace Constants {
     inline constexpr int NOT_SELECTED = -1;
     inline const std::string& ENEMY_STRATEGY = "enemy_strategy";
     inline const std::string& BULLETS = "bullets";
+    inline const std::string& REVOLVER_SPIN = "revolver_spin";
 }
 
 #endif // CONSTANTS

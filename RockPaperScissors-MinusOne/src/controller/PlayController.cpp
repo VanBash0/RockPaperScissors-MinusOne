@@ -51,6 +51,8 @@ void PlayController::LoadRevolver(PlayModel& model) {
     Config& config = Config::GetInstance();
     int bullets = config.Get<int>(Constants::BULLETS);
     model.revolver.LoadChambers(bullets);
+    bool ifSpins = config.Get<bool>(Constants::REVOLVER_SPIN);
+    model.revolver.setIfSpins(ifSpins);
 }
 
 void PlayController::SetEnemyStrategy(PlayModel& model) {

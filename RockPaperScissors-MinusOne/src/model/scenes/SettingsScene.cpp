@@ -20,6 +20,7 @@ SceneAction SettingsScene::Update() {
             if (action.targetState == GameState::SETTINGS_CHANGED) {
                 if (selected == 0) model.ChangeStrategy();
                 if (selected == 1) model.ChangeBullets();
+                if (selected == 2) model.ChangeSpin();
             }
             else {
                 model.SaveToConfig();

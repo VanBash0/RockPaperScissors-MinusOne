@@ -5,9 +5,11 @@ class Revolver {
 public:
     bool Fire();
     void LoadChambers(int n);
+    void setIfSpins(bool ifSpins) { this->ifSpins = ifSpins; };
 private:
-    unsigned char chambers = 0;
+    unsigned char chambers;
     int currIndex = 0;
+    bool ifSpins;
 };
 
 #endif // REVOLVER
