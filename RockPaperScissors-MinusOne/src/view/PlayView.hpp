@@ -13,7 +13,7 @@ public:
     void Render(const std::vector<Figure>& playerFigures, const std::vector<Figure>& enemyFigures);
     PlayView();
     ~PlayView();
-    void SetText(std::string text);
+    void SetText(const std::vector<std::string>& text);
 private:
     Texture2D rockTexturePlayer;
     Texture2D paperTexturePlayer;
@@ -21,7 +21,8 @@ private:
     Texture2D rockTextureEnemy;
     Texture2D paperTextureEnemy;
     Texture2D scissorsTextureEnemy;
-    std::string label;
+    std::vector<std::string> label;
+    void PrintLabel();
 };
 
 #endif // PLAY_VIEW

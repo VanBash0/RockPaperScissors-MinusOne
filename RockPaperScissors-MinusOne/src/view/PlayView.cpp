@@ -56,14 +56,22 @@ void PlayView::Render(const std::vector<Figure>& playerFigures, const std::vecto
         }
         DrawTexture(texture, Constants::SCREEN_WIDTH - 200, (Constants::SCREEN_HEIGHT / 3) * (i + 1) - 100, WHITE);
     }
-    auto labelInConstChar = label.c_str();
-    DrawText(
-        labelInConstChar,
-        (Constants::SCREEN_WIDTH - MeasureText(labelInConstChar, Constants::FONT_SIZE)) / 2,
-        (Constants::SCREEN_HEIGHT - Constants::FONT_SIZE) / 2,
-        Constants::FONT_SIZE,
-        BLACK
-    );
+    PrintLabel();
+}
+
+void PlayView::PrintLabel() {
+    int totalHeight = label.size() * Constants::FONT_SIZE +
+        (label.size() - 1) * Constants::SPACING;
+    int startY = (Constants::SCREEN_HEIGHT - totalHeight) / 2;
+
+    for (size_t i = 0; i < label.size(); i++) {
+        const char* text = label[i].c_str();
+        int textWidth = MeasureText(text, Constants::FONT_SIZE);
+        int x = (Constants::SCREEN_WIDTH - textWidth) / 2;
+        int y = startY + i * (Constants::FONT_SIZE + Constants::SPACING);
+
+        DrawText(text, x, y, Constants::FONT_SIZE, BLACK);
+    }
 }
 
 PlayView::PlayView() {
@@ -74,6 +82,6 @@ PlayView::~PlayView() {
     UnloadAssets();
 }
 
-void PlayView::SetText(std::string text) {
+void PlayView::SetText(const std::vector<std::string>& text) {
     label = text;
 }

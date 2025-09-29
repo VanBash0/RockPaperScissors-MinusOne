@@ -9,6 +9,7 @@
 
 int main() {
     InitWindow(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT, Constants::APP_NAME);
+    ToggleFullscreen();
     SetTargetFPS(60);
     
     SceneManager sceneManager;

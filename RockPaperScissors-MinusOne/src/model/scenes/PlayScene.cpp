@@ -1,5 +1,26 @@
-#include "PlayScene.hpp"
+﻿#include "PlayScene.hpp"
 #include "raylib.h"
+#include <map>
+
+enum class Label {
+    CHOOSE_FIGURES,
+    EMPTY,
+    PICK_FIGURE,
+    DRAW,
+    NO_BULLET,
+    ENEMY_SHOT,
+    YOU_SHOT
+};
+
+static std::unordered_map<Label, std::vector<std::string>> labelVector {
+    { Label::CHOOSE_FIGURES, std::vector<std::string> { "Choose your figures:", "1 - Rock", "2 - Paper", "3 - Scissors" }},
+    { Label::EMPTY, std::vector<std::string> { "" }},
+    { Label::PICK_FIGURE, std::vector<std::string> { "Pick one figure to leave:", "Q - Left hand", "W - Right hand" }},
+    { Label::DRAW, std::vector<std::string> { "Draw! Time to play again :)" }},
+    { Label::NO_BULLET, std::vector<std::string> { "No bullet! Time to play again :)" }},
+    { Label::ENEMY_SHOT, std::vector<std::string> { "Enemy is shot! You win! :)", "Press E to return to the main menu." }},
+    { Label::YOU_SHOT, std::vector<std::string> { "You are shot! You lose! :)", "Press E to return to the main menu." }},
+};
 
 SceneAction PlayScene::Update() {
     SceneAction action { GameState::PLAY, false };
@@ -20,11 +41,11 @@ SceneAction PlayScene::Update() {
         controller.ResetFigures(model);
         break;
     case PlaySceneState::CHOOSING_FIGURES: {
-        view.SetText("Choose your figures");
+        view.SetText(labelVector[Label::CHOOSE_FIGURES]);
         auto pressedKey = GetKeyPressed();
         if (controller.TryHandleChoosingFigures(model, pressedKey) && model.player.HandToPick() == NEITHER) {
             state = PlaySceneState::ENEMY_CHOOSING_FIGURES;
-            view.SetText("");
+            view.SetText(labelVector[Label::EMPTY]);
         }
         break;
     }
@@ -33,7 +54,7 @@ SceneAction PlayScene::Update() {
         state = PlaySceneState::DROPPING_FIGURE;
         break;
     case PlaySceneState::DROPPING_FIGURE: {
-        view.SetText("Pick one figure to leave");
+        view.SetText(labelVector[Label::PICK_FIGURE]);
         auto pressedKey = GetKeyPressed();
         auto playerFigures = model.player.GetFigures();
         if (controller.TryHandleDroppingFigure(model, pressedKey)) {
@@ -46,7 +67,7 @@ SceneAction PlayScene::Update() {
             state = PlaySceneState::SHOOTING;
         }
         else {
-            view.SetText("Draw!");
+            view.SetText(labelVector[Label::DRAW]);
             isWaiting = true;
             waitTimer = 2.0f;
             state = PlaySceneState::WAITING_AFTER_DRAW;
@@ -60,21 +81,21 @@ SceneAction PlayScene::Update() {
         auto shootingResult = controller.TryShooting(model);
         switch (shootingResult) {
         case GameResult::DRAW:
-            view.SetText("No bullet :(");
+            view.SetText(labelVector[Label::NO_BULLET]);
             isWaiting = true;
             waitTimer = 2.0f;
             state = PlaySceneState::WAITING_AFTER_SHOOT_DRAW;
             break;
 
         case GameResult::WIN:
-            view.SetText("Your enemy is shot");
+            view.SetText(labelVector[Label::ENEMY_SHOT]);
             isWaiting = true;
             waitTimer = 2.0f;
             state = PlaySceneState::WAITING_AFTER_WIN;
             break;
 
         case GameResult::LOSE:
-            view.SetText("You are shot");
+            view.SetText(labelVector[Label::YOU_SHOT]);
             isWaiting = true;
             waitTimer = 2.0f;
             state = PlaySceneState::WAITING_AFTER_LOSE;
@@ -85,7 +106,7 @@ SceneAction PlayScene::Update() {
     case PlaySceneState::WAITING_AFTER_SHOOT_DRAW:
         state = PlaySceneState::CHOOSING_FIGURES;
         controller.ResetFigures(model);
-        view.SetText("Choose your figures");
+        view.SetText(labelVector[Label::CHOOSE_FIGURES]);
         break;
     case PlaySceneState::WAITING_AFTER_WIN:
         state = PlaySceneState::WIN;
