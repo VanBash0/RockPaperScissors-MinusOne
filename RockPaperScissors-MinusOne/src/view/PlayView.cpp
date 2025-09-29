@@ -10,17 +10,37 @@ void PlayView::LoadAssets() {
     ImageResize(&paperImg, 200, 200);
     ImageResize(&scissorsImg, 200, 200);
 
-    rockTexturePlayer = LoadTextureFromImage(rockImg);
-    paperTexturePlayer = LoadTextureFromImage(paperImg);
-    scissorsTexturePlayer = LoadTextureFromImage(scissorsImg);
+    ImageRotate(&rockImg, 45);
+    ImageRotate(&paperImg, 45);
+    ImageRotate(&scissorsImg, 45);
+
+    rockTexturePlayerRight = LoadTextureFromImage(rockImg);
+    paperTexturePlayerRight = LoadTextureFromImage(paperImg);
+    scissorsTexturePlayerRight = LoadTextureFromImage(scissorsImg);
+
+    ImageFlipVertical(&rockImg);
+    ImageFlipVertical(&paperImg);
+    ImageFlipVertical(&scissorsImg);
+
+    rockTexturePlayerLeft = LoadTextureFromImage(rockImg);
+    paperTexturePlayerLeft = LoadTextureFromImage(paperImg);
+    scissorsTexturePlayerLeft = LoadTextureFromImage(scissorsImg);
 
     ImageFlipHorizontal(&rockImg);
     ImageFlipHorizontal(&paperImg);
     ImageFlipHorizontal(&scissorsImg);
 
-    rockTextureEnemy = LoadTextureFromImage(rockImg);
-    paperTextureEnemy = LoadTextureFromImage(paperImg);
-    scissorsTextureEnemy = LoadTextureFromImage(scissorsImg);
+    rockTextureEnemyRight = LoadTextureFromImage(rockImg);
+    paperTextureEnemyRight = LoadTextureFromImage(paperImg);
+    scissorsTextureEnemyRight = LoadTextureFromImage(scissorsImg);
+
+    ImageFlipVertical(&rockImg);
+    ImageFlipVertical(&paperImg);
+    ImageFlipVertical(&scissorsImg);
+
+    rockTextureEnemyLeft = LoadTextureFromImage(rockImg);
+    paperTextureEnemyLeft = LoadTextureFromImage(paperImg);
+    scissorsTextureEnemyLeft = LoadTextureFromImage(scissorsImg);
 
     UnloadImage(rockImg);
     UnloadImage(paperImg);
@@ -28,12 +48,18 @@ void PlayView::LoadAssets() {
 }
 
 void PlayView::UnloadAssets() {
-    UnloadTexture(rockTexturePlayer);
-    UnloadTexture(paperTexturePlayer);
-    UnloadTexture(scissorsTexturePlayer);
-    UnloadTexture(rockTextureEnemy);
-    UnloadTexture(paperTextureEnemy);
-    UnloadTexture(scissorsTextureEnemy);
+    UnloadTexture(rockTexturePlayerLeft);
+    UnloadTexture(rockTexturePlayerRight);
+    UnloadTexture(paperTexturePlayerLeft);
+    UnloadTexture(paperTexturePlayerRight);
+    UnloadTexture(scissorsTexturePlayerLeft);
+    UnloadTexture(scissorsTexturePlayerRight);
+    UnloadTexture(rockTextureEnemyLeft);
+    UnloadTexture(rockTextureEnemyRight);
+    UnloadTexture(paperTextureEnemyLeft);
+    UnloadTexture(paperTextureEnemyRight);
+    UnloadTexture(scissorsTextureEnemyLeft);
+    UnloadTexture(scissorsTextureEnemyRight);
 }
 
 void PlayView::Render(const std::vector<Figure>& playerFigures, const std::vector<Figure>& enemyFigures) {
@@ -41,20 +67,20 @@ void PlayView::Render(const std::vector<Figure>& playerFigures, const std::vecto
     for (size_t i = 0; i < playerFigures.size(); ++i) {
         if (playerFigures[i] == Figure::EMPTY) continue;
         switch (playerFigures[i]) {
-        case Figure::ROCK: texture = rockTexturePlayer; break;
-        case Figure::PAPER: texture = paperTexturePlayer; break;
-        case Figure::SCISSORS: texture = scissorsTexturePlayer; break;
+        case Figure::ROCK: texture = (i == 0) ? rockTexturePlayerLeft : rockTexturePlayerRight; break;
+        case Figure::PAPER: texture = (i == 0) ? paperTexturePlayerLeft : paperTexturePlayerRight; break;
+        case Figure::SCISSORS: texture = (i == 0) ? scissorsTexturePlayerLeft : scissorsTexturePlayerRight; break;
         }
-        DrawTexture(texture, 0, (Constants::SCREEN_HEIGHT / 3) * (i + 1) - 100, WHITE);
+        DrawTexture(texture, -50, (Constants::SCREEN_HEIGHT / 3) * (i + 1) - 100, WHITE);
     }
     for (size_t i = 0; i < enemyFigures.size(); ++i) {
         if (enemyFigures[i] == Figure::EMPTY) continue;
         switch (enemyFigures[i]) {
-        case Figure::ROCK: texture = rockTextureEnemy; break;
-        case Figure::PAPER: texture = paperTextureEnemy; break;
-        case Figure::SCISSORS: texture = scissorsTextureEnemy; break;
+        case Figure::ROCK: texture = (i == 0) ? rockTextureEnemyRight : rockTextureEnemyLeft; break;
+        case Figure::PAPER: texture = (i == 0) ? paperTextureEnemyRight : paperTextureEnemyLeft; break;
+        case Figure::SCISSORS: texture = (i == 0) ? scissorsTextureEnemyRight : scissorsTextureEnemyLeft; break;
         }
-        DrawTexture(texture, Constants::SCREEN_WIDTH - 200, (Constants::SCREEN_HEIGHT / 3) * (i + 1) - 100, WHITE);
+        DrawTexture(texture, Constants::SCREEN_WIDTH - 225, (Constants::SCREEN_HEIGHT / 3) * (i + 1) - 100, WHITE);
     }
     PrintLabel();
 }

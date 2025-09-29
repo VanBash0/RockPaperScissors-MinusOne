@@ -15,12 +15,18 @@ public:
     ~PlayView();
     void SetText(const std::vector<std::string>& text);
 private:
-    Texture2D rockTexturePlayer;
-    Texture2D paperTexturePlayer;
-    Texture2D scissorsTexturePlayer;
-    Texture2D rockTextureEnemy;
-    Texture2D paperTextureEnemy;
-    Texture2D scissorsTextureEnemy;
+    Texture2D rockTexturePlayerLeft;
+    Texture2D rockTexturePlayerRight;
+    Texture2D paperTexturePlayerLeft;
+    Texture2D paperTexturePlayerRight;
+    Texture2D scissorsTexturePlayerLeft;
+    Texture2D scissorsTexturePlayerRight;
+    Texture2D rockTextureEnemyLeft;
+    Texture2D rockTextureEnemyRight;
+    Texture2D paperTextureEnemyLeft;
+    Texture2D paperTextureEnemyRight;
+    Texture2D scissorsTextureEnemyLeft;
+    Texture2D scissorsTextureEnemyRight;
     std::vector<std::string> label;
     void PrintLabel();
 };

@@ -1,5 +1,5 @@
 {
-    "bullets": 6,
-    "enemy_strategy": 2,
+    "bullets": 3,
+    "enemy_strategy": 1,
     "revolver_spin": false
 }
